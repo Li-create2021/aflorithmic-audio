@@ -23,6 +23,7 @@ app.get("/api/audio", async (req, res) => {
     });
     console.log(script);
 
+    //create speech with chosen voice
     const speech = await apiaudio.Speech.create({
       scriptId: script["scriptId"],
       voice: voice,
