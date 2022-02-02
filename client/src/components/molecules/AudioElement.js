@@ -21,7 +21,7 @@ const AudioElement = () => {
           input={inputEl.toString()}
           ref={inputEl}
           type="text"
-          src="https://v1.api.audio/url/4c6a7/hello.mp3"
+          src="https://v1.api.audio/url/4c6a7/hello.mp3" // consume the context and use the state that holds the url here
           controls
           autoPlay
         />
