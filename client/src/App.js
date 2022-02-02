@@ -1,8 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
+// import FormTemplate from "./components/templates/FormTemplate";
+import LayoutTemplate from "./components/templates/LayoutTemplate";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <LayoutTemplate />
+      {/* <FormTemplate /> */}
+    </>
+  );
 }
 
 export default App;
