@@ -6,13 +6,13 @@ apiaudio.configure({ apiKey: process.env.APIKEY, debug: false });
 
 const app = express();
 
-//middleware
+//middleware to ensure all routes can read a JSON formatted req body
 app.use(express.json());
 
 //Get the audio from the api
 app.get("/api/audio", async (req, res) => {
   // sanitizing the inputs
-  const { scriptText, voice } = req.body;
+  const { scriptText, voice, speech } = req.body;
 
   try {
     const script = await apiaudio.Script.create({
@@ -23,15 +23,25 @@ app.get("/api/audio", async (req, res) => {
     });
     console.log(script);
 
-    //create speech with chosen voice
-    const speech = await apiaudio.Speech.create({
+    //Create speech with chosen voice
+    const speechRequest = await apiaudio.Speech.create({
       scriptId: script["scriptId"],
       voice: voice,
+      speech: speech,
     });
-    console.log(speech);
+    console.log(speechRequest);
+
+    // //Select from a collection of sound templates **new and not sure if it works
+    // const SoundTemplate = await Sound.list({
+    //   scriptId: script["scriptID"],
+    //   collection: collection["collectionID"],
+    // });
+    // console.log(SoundTemplate);
+
+    //Sound template selected
+    const template = "curtaincall";
 
     //Master the speech file with good quality and background track
-    const template = "parisianmorning";
     const mastering = await apiaudio.Mastering.create({
       scriptId: script["scriptId"],
       soundTemplate: template,
@@ -45,7 +55,7 @@ app.get("/api/audio", async (req, res) => {
     );
     console.log(masteringResult);
 
-    res.status(200).send(speech);
+    res.status(200).send(speechRequest);
   } catch (error) {
     console.error(error);
     res.status(500).send("An error happened!");
