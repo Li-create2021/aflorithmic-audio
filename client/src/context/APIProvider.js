@@ -1,25 +1,24 @@
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const ApiContext = createContext();
 
 const APIProvider = (props) => {
-  const {
-    isFetched: audioIsFetched,
-    error: audioError,
-    data: audioData,
-  } = useQuery(
-    // query key: an array with a name and a variable used in the endpoint
-    "audio",
-    () => axios.get("/api/audio"),
+  // create a state to hold the url and include it in the context value
+  const [getUrl, setGetUrl] = useState(false);
+
+  const createNewAudio = useMutation(
+    (audioConfig) => {
+      return axios.post("/api/audio", audioConfig); // audioConfig = req.body of the POST req
+    },
     {
-      enabled: true,
+      onSuccess: () => console.log("success!"),
     }
   );
 
   return (
-    <ApiContext.Provider value={{ audioIsFetched, audioError, audioData }}>
+    <ApiContext.Provider value={{ createNewAudio, getUrl, setGetUrl }}>
       {props.children}
     </ApiContext.Provider>
   );
