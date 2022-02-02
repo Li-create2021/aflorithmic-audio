@@ -44,6 +44,7 @@ const LayoutTemplate = () => {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
+              className: "trigger",
               onClick: toggleSidebar,
             }
           )}
