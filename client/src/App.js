@@ -1,6 +1,6 @@
 import "./App.css";
-// import FormTemplate from "./components/templates/FormTemplate";
-import LayoutTemplate from "./components/templates/LayoutTemplate";
+// import FormTemplate from "./components/templates/layout/FormTemplate";
+import LayoutTemplate from "./components/templates/layout/LayoutTemplate";
 
 function App() {
   return (
