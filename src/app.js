@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 //Get the audio from the api
-app.get("/api/audio", async (req, res) => {
+app.post("/api/audio", async (req, res) => {
   // sanitizing the inputs
   const { scriptText, voice, speech } = req.body;
 
