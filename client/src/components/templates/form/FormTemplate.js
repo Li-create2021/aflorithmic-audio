@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, Input, Button, Select } from "antd";
 import AudioElement from "../../molecules/AudioElement";
+// import APIProvider from "../../../context/APIProvider";
+import { ApiContext } from "../../../context/APIProvider";
 
 const { TextArea } = Input;
 
 const FormTemplate = () => {
-  // const [componentSize, setComponentSize] = useState("default");
+  //pass usestate props from getUrl
+  // const GetUrl = ({ getUrl, setGetUrl }) => {};
 
-  // const onFormLayoutChange = ({ size }) => {
-  //   setComponentSize(size);
-  // };
+  const { createNewAudio, getUrl, setGetUrl } = useContext(ApiContext);
+  console.log(ApiContext.createNewAudio);
+
+  // on form submit, execute this
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+    setGetUrl(getUrl);
+
+    const audio = ApiContext.createNewAudio.mutateAsync({
+      voice: "Joanna", // can come from a state or from the submit event
+      speech: "hey",
+    });
+
+    console.log(audio);
+
+    // setTaco(audio.url) state the audio url
+  };
 
   return (
     <Form
