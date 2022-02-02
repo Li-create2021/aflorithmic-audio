@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button, Select } from "antd";
+import AudioElement from "../../molecules/AudioElement";
 
 const { TextArea } = Input;
 
@@ -13,7 +14,7 @@ const FormTemplate = () => {
   return (
     <Form
       labelCol={{
-        span: 4,
+        span: 6,
       }}
       wrapperCol={{
         span: 25,
@@ -26,13 +27,19 @@ const FormTemplate = () => {
       // size={componentSize}
     >
       <Form.Item label="Introduction">
-        <TextArea rows={2} />
+        <TextArea
+          rows={2}
+          placeholder="Write a sweet but short intro for your audio"
+        />
       </Form.Item>
       <Form.Item label="Main Copy">
-        <TextArea rows={4} />
+        <TextArea
+          rows={4}
+          placeholder="Explain your product in less than 50 words"
+        />
       </Form.Item>
       <Form.Item label="Call to action">
-        <TextArea rows={2} />
+        <TextArea rows={2} placeholder="Say goodbye with a CTA" />
       </Form.Item>
       <Form.Item label="Speaker">
         <Select>
@@ -53,6 +60,9 @@ const FormTemplate = () => {
             Fairy Tale (acoustic music for kid's stories)
           </Select.Option>
         </Select>
+      </Form.Item>
+      <Form.Item label="">
+        <AudioElement />
       </Form.Item>
       <Form.Item label="">
         <Button>PRODUCE & PREVIEW AUDIO</Button>
