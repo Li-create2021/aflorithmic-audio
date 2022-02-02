@@ -30,6 +30,21 @@ app.get("/api/audio", async (req, res) => {
     });
     console.log(speech);
 
+    //Master the speech file with good quality and background track
+    const template = "parisianmorning";
+    const mastering = await apiaudio.Mastering.create({
+      scriptId: script["scriptId"],
+      soundTemplate: template,
+    });
+    console.log(mastering);
+
+    //get the url's of the audio file generated, download or get req in postman
+    const masteringResult = await apiaudio.Mastering.retrieve(
+      script["scriptId"],
+      {}
+    );
+    console.log(masteringResult);
+
     res.status(200).send(speech);
   } catch (error) {
     console.error(error);
