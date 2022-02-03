@@ -1,22 +1,27 @@
 import { useMutation } from "react-query";
-import axios from "axios";
 import { createContext, useState } from "react";
+import axios from "axios";
 
+//Create the context
 export const ApiContext = createContext();
 
 const APIProvider = (props) => {
-  // create a state to hold the url and include it in the context value
-  const [getUrl, setGetUrl] = useState(false);
+  //State to hold the url, included in the context value
+  const [getUrl, setGetUrl] = useState(
+    "https://redirector.dps.live/biobiosantiago/mp3/icecast.audio"
+  );
 
+  //audioConfig is the fn that will post data to the backend
   const createNewAudio = useMutation(
     (audioConfig) => {
-      return axios.post("/api/audio", audioConfig); // audioConfig = req.body of the POST req
+      return axios.post("http://localhost:8000/api/audio", audioConfig); // audioConfig = req.body of the POST req
     },
     {
       onSuccess: () => console.log("success!"),
     }
   );
 
+  //Provide the context
   return (
     <ApiContext.Provider value={{ createNewAudio, getUrl, setGetUrl }}>
       {props.children}
