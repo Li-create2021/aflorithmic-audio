@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { ApiContext } from "../../context/APIProvider";
 import styled from "styled-components";
 
 const StyledMain = styled.div`
@@ -8,10 +9,10 @@ const StyledMain = styled.div`
 `;
 
 const AudioElement = () => {
+  const apiContext = useContext(ApiContext);
+
   const inputEl = useRef(null);
-  // const onButtonClick = () => {
-  //   inputEl.current.focus();
-  // };
+
   return (
     <StyledMain>
       <h1>🥳 Success - Your Ad is ready</h1>
@@ -21,9 +22,8 @@ const AudioElement = () => {
           input={inputEl.toString()}
           ref={inputEl}
           type="text"
-          src="https://v1.api.audio/url/4c6a7/hello.mp3" // consume the context and use the state that holds the url here
+          src={apiContext.getUrl}
           controls
-          autoPlay
         />
         <button>Download / Copy URL</button>
       </div>
