@@ -23,15 +23,10 @@ const FormTemplate = () => {
   const onSubmitHandler = async (values) => {
     // e.preventDefault();
 
-    const scriptText = (
-      values.introduction +
-      values.mainCopy +
-      values.cta
-    ).toUpperCase();
+    //Function to concatenate the 3 text input values
+    const scriptText = `${values.introduction} ${values.mainCopy} ${values.cta}`;
 
-    // let script = await apiaudio.Script.create({ scriptText: scriptText });
-    // console.log(script);
-
+    //
     const audioData = {
       scriptText: scriptText,
       voice: values.speaker,
@@ -82,13 +77,14 @@ const FormTemplate = () => {
       </Form.Item>
       <Form.Item label="Sound Design" name="soundTemplate">
         <Select onChange={SoundDesignHandleChange}>
-          <Select.Option value="Newhorizons">
-            New Horizons(uptempo electronic tunes)
+          <Select.Option value="curtaincall">
+            Curtaincall (An energetic jingle with an easy going, melodic tune)
           </Select.Option>
-          <Select.Option value="Openup">
-            Open Up (emotional acoustic piano){" "}
+          <Select.Option value="driftingoff">
+            Drifting off (A relaxing guitar player on a sunny coast. Crashing
+            waves in the background.)
           </Select.Option>
-          <Select.Option value="Fairytale">
+          <Select.Option value="fairytale">
             Fairy Tale (acoustic music for kid's stories)
           </Select.Option>
         </Select>
