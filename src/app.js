@@ -1,13 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const apiaudio = require("apiaudio").default;
+const cors = require("cors");
 
 apiaudio.configure({ apiKey: process.env.APIKEY, debug: false });
 
 const app = express();
 
+// Global middlewares
 //middleware to ensure all routes can read a JSON formatted req body
 app.use(express.json());
+// CORS
+app.use(cors("*"));
 
 //Get the audio from the api
 app.post("/api/audio", async (req, res) => {
