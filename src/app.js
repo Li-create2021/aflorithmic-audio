@@ -8,7 +8,7 @@ apiaudio.configure({ apiKey: process.env.APIKEY, debug: false });
 const app = express();
 
 // Global middlewares
-//middleware to ensure all routes can read a JSON formatted req body
+//middleware to ensure all routes can read by a JSON formatted req body
 app.use(express.json());
 // CORS
 app.use(cors("*"));
@@ -16,34 +16,43 @@ app.use(cors("*"));
 //Get the audio from the api
 app.post("/api/audio", async (req, res) => {
   // sanitizing the inputs
-  const { scriptText, voice, speech } = req.body;
+  const { scriptText, voice, speed, effect, collections, genre, tempo } =
+    req.body;
 
   try {
     const script = await apiaudio.Script.create({
       scriptText: scriptText,
-      scriptName: "hello",
-      projectName: "hello",
-      moduleName: "hello",
+      scriptName: "Hello Liana",
+      projectName: "Hello Liana",
+      moduleName: "Hello Liana",
     });
     console.log(script);
 
-    //Create speech with chosen voice
+    //Create speech with chosen voice, speed and effect
     const speechRequest = await apiaudio.Speech.create({
       scriptId: script["scriptId"],
       voice: voice,
-      speech: speech,
+      speed: speed,
+      effect: effect,
     });
-    console.log(speechRequest);
+    console.log("Response from text-to-speech:", speechRequest);
 
-    // //Select from a collection of sound templates **new and not sure if it works
-    // const SoundTemplate = await Sound.list({
-    //   scriptId: script["scriptID"],
-    //   collection: collection["collectionID"],
+    // //Retrieve speech file url
+    // const getSpeech = await apiaudio.Speech.retrieve({
+    //   scriptId: script["scriptId"],
     // });
-    // console.log(SoundTemplate);
+    // console.log("This is to retrieve speech url:", getSpeech);
 
-    //Sound template selected
-    const template = "curtaincall";
+    // Select from a collection of sound templates and genre
+    const soundList = await apiaudio.Sound.list({
+      collections: collections,
+      genre: genre,
+      tempo: tempo,
+    });
+    // console.log("This is the collection of sound templates:", soundList);
+
+    // //Sound template selected
+    const template = "copacabana";
 
     //Master the speech file with good quality and background track
     const mastering = await apiaudio.Mastering.create({
@@ -52,13 +61,14 @@ app.post("/api/audio", async (req, res) => {
     });
     console.log(mastering);
 
-    //get the url's of the audio file generated, download or get req in postman
+    //Get the url's of the audio file generated, download or do post req in postman to obtain it
     const masteringResult = await apiaudio.Mastering.retrieve(
       script["scriptId"],
       {}
     );
-    console.log(masteringResult);
+    console.log("This is the masteringResult:", masteringResult);
 
+    //Request validation notifications in the console
     res.status(200).send(speechRequest);
   } catch (error) {
     console.error(error);
