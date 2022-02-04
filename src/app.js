@@ -8,7 +8,6 @@ apiaudio.configure({ apiKey: process.env.APIKEY, debug: false });
 const app = express();
 
 // Global middlewares
-//middleware to ensure all routes can read by a JSON formatted req body
 app.use(express.json());
 // CORS
 app.use(cors("*"));
@@ -37,19 +36,13 @@ app.post("/api/audio", async (req, res) => {
     });
     console.log("Response from text-to-speech:", speechRequest);
 
-    // //Retrieve speech file url
-    // const getSpeech = await apiaudio.Speech.retrieve({
-    //   scriptId: script["scriptId"],
-    // });
-    // console.log("This is to retrieve speech url:", getSpeech);
-
     // Select from a collection of sound templates and genre
     const soundList = await apiaudio.Sound.list({
       collections: collections,
       genre: genre,
       tempo: tempo,
     });
-    // console.log("This is the collection of sound templates:", soundList);
+    console.log("This is the collection of sound templates:", soundList);
 
     // //Sound template selected
     const template = "copacabana";
@@ -59,14 +52,7 @@ app.post("/api/audio", async (req, res) => {
       scriptId: script["scriptId"],
       soundTemplate: template,
     });
-    console.log(mastering);
-
-    //Get the url's of the audio file generated, download or do post req in postman to obtain it
-    const masteringResult = await apiaudio.Mastering.retrieve(
-      script["scriptId"],
-      {}
-    );
-    console.log("This is the masteringResult:", masteringResult);
+    console.log("Mastering log:", mastering);
 
     //Request validation notifications in the console
     res.status(200).send(speechRequest);
