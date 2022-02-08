@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Form, Input, Button, Select } from "antd";
-import AudioElement from "../../molecules/AudioElement";
+// import AudioElement from "../../molecules/AudioElement";
 import { ApiContext } from "../../../context/APIProvider";
+import AppModal from "../../organisms/Modal";
 
 const { TextArea } = Input;
 
@@ -104,13 +105,23 @@ const FormTemplate = () => {
           </Select.Option>
         </Select>
       </Form.Item>
+
       <Form.Item>
-        <AudioElement />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          PRODUCE & PREVIEW AUDIO
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{
+            alignItems: "center",
+            margin: "auto",
+            display: "flex",
+            justifyContents: "center",
+          }}
+        >
+          CLICK TO PRODUCE YOUR AUDIO
         </Button>
+        <Form.Item>
+          <AppModal />
+        </Form.Item>
       </Form.Item>
     </Form>
   );
