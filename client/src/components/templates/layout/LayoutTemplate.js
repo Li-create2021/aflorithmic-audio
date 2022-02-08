@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Layout, Menu, Avatar } from "antd";
 import FormTemplate from "../form/FormTemplate";
-import Title from "antd/lib/typography/Title";
 import { LayoutContext } from "../../../context/LayoutProvider";
 import "./LayoutStyles.css";
 import {
@@ -22,15 +21,17 @@ const LayoutTemplate = () => {
   const location = useLocation();
 
   const toggleSidebar = () => {
-    setCollapsed(collapsed);
+    setCollapsed(!collapsed);
   };
 
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <Title style={{ color: "white" }} level={5}>
-          Liana van Zyl
-        </Title>
+        <Avatar
+          size={40}
+          style={{ float: "right", margin: 15 }}
+          src="/././user.png"
+        />
         <Menu
           theme="dark"
           mode="inline"
@@ -61,19 +62,6 @@ const LayoutTemplate = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
-          <Avatar
-            size={{
-              xs: 24,
-              sm: 32,
-              md: 40,
-              lg: 64,
-              xl: 80,
-              xxl: 100,
-            }}
-            style={{ float: "right", margin: 15 }}
-            src="/././user.png"
-          />
-
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
