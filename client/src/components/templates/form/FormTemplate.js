@@ -26,13 +26,13 @@ const FormTemplate = () => {
     //Function to concatenate the 3 text input values
     const scriptText = `${values.introduction} ${values.mainCopy} ${values.cta}`;
 
-    //
+    //Audio file data
     const audioData = {
       scriptText: scriptText,
       voice: values.speaker,
-      soundDesign: values.soundTemplate,
+      soundTemplate: values.soundTemplate,
     };
-    console.log(audioData);
+    console.log("Audio data:", audioData);
 
     //execute post request
     const audio = await apiContext.createNewAudio.mutateAsync(audioData);
@@ -56,27 +56,35 @@ const FormTemplate = () => {
       <Form.Item label="Introduction" name="introduction">
         <TextArea
           rows={2}
-          placeholder="Write a sweet but short intro for your audio"
+          placeholder="A good intro is important to catch attention"
         />
       </Form.Item>
       <Form.Item label="Main Copy" name="mainCopy">
         <TextArea
           rows={4}
-          placeholder="Explain your product in less than 50 words"
+          placeholder="Explain your amazing product in less than 50 words"
         />
       </Form.Item>
       <Form.Item label="Call to action" name="cta">
-        <TextArea rows={2} placeholder="Say goodbye with a CTA" />
+        <TextArea rows={2} placeholder="Say goodbye with a Call To Action" />
       </Form.Item>
       <Form.Item label="Speaker" name="speaker">
         <Select onChange={voiceHandleChange}>
           <Select.Option value="Mia">Mia</Select.Option>
           <Select.Option value="Libby">Libby</Select.Option>
           <Select.Option value="Guy">Guy</Select.Option>
+          <Select.Option value="Kent">Kent</Select.Option>
+          <Select.Option value="Clara">Clara</Select.Option>
+          <Select.Option value="Liam">Liam</Select.Option>
+          <Select.Option value="Aria">Aria</Select.Option>
+          <Select.Option value="Colin">Colin</Select.Option>
+          <Select.Option value="Leah">Leah</Select.Option>
+          <Select.Option value="Adri">Adri</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item label="Sound Design" name="soundTemplate">
         <Select onChange={SoundDesignHandleChange}>
+          <Select.Option value="copacabana">Copacabana</Select.Option>
           <Select.Option value="curtaincall">
             Curtaincall (An energetic jingle with an easy going, melodic tune)
           </Select.Option>
@@ -86,6 +94,13 @@ const FormTemplate = () => {
           </Select.Option>
           <Select.Option value="fairytale">
             Fairy Tale (acoustic music for kid's stories)
+          </Select.Option>
+          <Select.Option value="citynights">
+            City Nights (Downtempo with bass elements, takes you out to a New
+            York city night)
+          </Select.Option>
+          <Select.Option value="sunnyday">
+            Sunny Day (Acoustic with mid tempo)
           </Select.Option>
         </Select>
       </Form.Item>
