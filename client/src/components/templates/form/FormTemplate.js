@@ -15,9 +15,9 @@ const FormTemplate = () => {
   }
 
   //Event handler for selecting sound template
-  function SoundDesignHandleChange(value) {
+  const SoundDesignHandleChange = (value) => {
     console.log(`selected ${value}`);
-  }
+  };
 
   // on form submit, execute this handler to get the audio
   const onSubmitHandler = async (values) => {
