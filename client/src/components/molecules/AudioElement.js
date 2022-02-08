@@ -13,6 +13,14 @@ const AudioElement = () => {
 
   const inputEl = useRef(null);
 
+  // const handlePlay = () => {
+  //   inputEl.current.play();
+  // };
+
+  // const handlePause = () => {
+  //   inputEl.current.pause();
+  // };
+
   return (
     <StyledMain>
       <h1>🥳 Success - Your Ad is ready</h1>
@@ -25,6 +33,8 @@ const AudioElement = () => {
           src={apiContext.getUrl}
           controls
         />
+        {/* <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePause}>Pause</button> */}
         <button>Download / Copy URL</button>
       </div>
     </StyledMain>
