@@ -1,13 +1,8 @@
 import React from "react";
-
-import LayoutTemplate from "../templates/layout/LayoutTemplate";
+import ResumeDrawer from "../organisms/drawer/ResumeDrawer";
 
 const About = () => {
-  return (
-    <div>
-      <LayoutTemplate />
-    </div>
-  );
+  return <ResumeDrawer />;
 };
 
 export default About;
