@@ -1,13 +1,21 @@
-import "./App.css";
-// import FormTemplate from "./components/templates/layout/FormTemplate";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+// import { Routes, Route, Link } from "react-router-dom";
+import About from "./components/pages/About";
+// import { LayoutContext } from "antd/lib/layout/layout";
 import LayoutTemplate from "./components/templates/layout/LayoutTemplate";
+
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <LayoutTemplate />
-      {/* <FormTemplate /> */}
-    </>
+    <Switch>
+      <Route exact={true} path={"/"}>
+        <About LayoutTemplate={LayoutTemplate} />
+      </Route>
+      {/* <Route path="/MyProjects">
+        <AudioApp />
+      </Route> */}
+    </Switch>
   );
 }
 
