@@ -13,6 +13,7 @@ import {
   PlayCircleOutlined,
 } from "@ant-design/icons";
 
+const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -58,6 +59,8 @@ const LayoutTemplate = () => {
             <span>Contact</span>
             <Link to="/contact"></Link>
           </Menu.Item>
+          <Menu.Item key="2" icon={<VideoCameraOutlined />}></Menu.Item>
+          <Menu.Item key="3" icon={<UploadOutlined />}></Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -78,6 +81,11 @@ const LayoutTemplate = () => {
             minHeight: 280,
           }}
         >
+          <Title level={3}>
+            Self-Service Audio Ad Builder from Aflorithmic
+          </Title>
+          <Title level={5}>1. Write Your Ad</Title>
+          <Title level={5}>2. Select Your Speaker & Add Music</Title>
           <FormTemplate />
         </Content>
       </Layout>

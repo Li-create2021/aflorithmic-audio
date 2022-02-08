@@ -5,8 +5,15 @@ import styled from "styled-components";
 const StyledMain = styled.div`
   border: 2px solid rgb(7, 170, 7);
   border-radius: 5px;
-  padding: 10px;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
 `;
+
+// const StyledButton = styled.button`
+//   text-transform: uppercase;
+//   background: 0 0;
+// `;
 
 const AudioElement = () => {
   const apiContext = useContext(ApiContext);

@@ -5,6 +5,23 @@ import AppModal from "../../organisms/Modal";
 
 const { TextArea } = Input;
 
+const StyledButton = styled(Button)`
+  position: relative;
+  border-raduis: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--btn-font-size, 1.5em);
+  color: var(--color-contrast-medium);
+  padding: var(--space-xs) var(--space-md);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-contrast-high);
+  }
+`;
+
 const FormTemplate = () => {
   //All data is stored in a context to be accessable globally
   const apiContext = useContext(ApiContext);
