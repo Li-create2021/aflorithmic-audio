@@ -1,13 +1,18 @@
+import { Switch, Route } from "react-router-dom";
+import Home from "./components/pages/Home";
+
 import "./App.css";
-// import FormTemplate from "./components/templates/layout/FormTemplate";
-import LayoutTemplate from "./components/templates/layout/LayoutTemplate";
 
 function App() {
   return (
-    <>
-      <LayoutTemplate />
-      {/* <FormTemplate /> */}
-    </>
+    <Switch>
+      <Route exact={true} path={"/"}>
+        <Home />
+      </Route>
+      {/* <Route path="/MyProjects">
+        <AudioApp />
+      </Route> */}
+    </Switch>
   );
 }
 
