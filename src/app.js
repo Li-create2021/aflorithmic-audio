@@ -15,8 +15,16 @@ app.use(cors("*"));
 //Get the audio from the api
 app.post("/api/audio", async (req, res) => {
   // sanitizing the inputs
-  const { scriptText, voice, speed, effect, collections, genre, tempo } =
-    req.body;
+  const {
+    scriptText,
+    voice,
+    speed,
+    effect,
+    soundTemplate,
+    collections,
+    genre,
+    tempo,
+  } = req.body;
 
   try {
     const script = await apiaudio.Script.create({
@@ -33,26 +41,31 @@ app.post("/api/audio", async (req, res) => {
       voice: voice,
       speed: speed,
       effect: effect,
+      // tag: "uplifting",
     });
     console.log("Response from text-to-speech:", speechRequest);
 
-    // Select from a collection of sound templates and genre
-    const soundList = await apiaudio.Sound.list({
-      collections: collections,
-      genre: genre,
-      tempo: tempo,
+    const soundParameters = await apiaudio.Sound.parameters({
+      scriptId: script["scriptId"],
     });
-    console.log("This is the collection of sound templates:", soundList);
 
-    // //Sound template selected
-    const template = "copacabana";
+    console.log("SoundParameters log:", soundParameters);
+
+    // Select from a collection of sound templates and genre
+    // const soundList = await apiaudio.Sound.list({
+    //   collections: collections,
+    //   genre: genre,
+    //   tempo: tempo,
+    // });
+    // console.log("This is the collection of sound templates:", soundList);
 
     //Master the speech file with good quality and background track
     const mastering = await apiaudio.Mastering.create({
       scriptId: script["scriptId"],
-      soundTemplate: template,
+      soundTemplate: soundTemplate,
     });
     console.log("Mastering log:", mastering);
+    console.log("soundtemplate log", soundTemplate);
 
     //Request validation notifications in the console
     res.status(200).send(speechRequest);
