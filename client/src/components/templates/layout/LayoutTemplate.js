@@ -1,10 +1,11 @@
 import React from "react";
-import { Layout, Menu } from "antd";
-import FormTemplate from "../form/FormTemplate";
 import { useContext } from "react";
+import FormTemplate from "../form/FormTemplate";
+import { Layout, Menu } from "antd";
+import { Typography } from "antd";
+
 import { LayoutContext } from "../../../context/LayoutProvider";
 import "./LayoutStyles.css";
-// import { useHistory } from "react";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -13,10 +14,10 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 
+const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
 
 const LayoutTemplate = () => {
-  // let history = useHistory();
   const { collapsed, setCollapsed } = useContext(LayoutContext);
 
   const toggleSidebar = () => {
@@ -27,16 +28,12 @@ const LayoutTemplate = () => {
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["Home"]}>
+          <Menu.Item key="Home" icon={<UserOutlined />}>
+            Home
           </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
+          <Menu.Item key="2" icon={<VideoCameraOutlined />}></Menu.Item>
+          <Menu.Item key="3" icon={<UploadOutlined />}></Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -57,6 +54,11 @@ const LayoutTemplate = () => {
             minHeight: 280,
           }}
         >
+          <Title level={3}>
+            Self-Service Audio Ad Builder from Aflorithmic
+          </Title>
+          <Title level={5}>1. Write Your Ad</Title>
+          <Title level={5}>2. Select Your Speaker & Add Music</Title>
           <FormTemplate />
         </Content>
       </Layout>
