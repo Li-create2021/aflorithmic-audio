@@ -2,8 +2,26 @@ import React, { useContext } from "react";
 import { Form, Input, Button, Select } from "antd";
 import AudioElement from "../../molecules/AudioElement";
 import { ApiContext } from "../../../context/APIProvider";
+import styled from "styled-components";
 
 const { TextArea } = Input;
+
+const StyledButton = styled(Button)`
+  position: relative;
+  border-raduis: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--btn-font-size, 1.5em);
+  color: var(--color-contrast-medium);
+  padding: var(--space-xs) var(--space-md);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-contrast-high);
+  }
+`;
 
 const FormTemplate = () => {
   //All data is stored in a context to be accessable globally
@@ -93,9 +111,9 @@ const FormTemplate = () => {
         <AudioElement />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <StyledButton type="primary" htmlType="submit">
           PRODUCE & PREVIEW AUDIO
-        </Button>
+        </StyledButton>
       </Form.Item>
     </Form>
   );
