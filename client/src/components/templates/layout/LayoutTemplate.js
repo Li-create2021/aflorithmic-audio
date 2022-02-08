@@ -22,7 +22,7 @@ const LayoutTemplate = () => {
   const location = useLocation();
 
   const toggleSidebar = () => {
-    setCollapsed(!collapsed);
+    setCollapsed(collapsed);
   };
 
   return (
@@ -53,7 +53,10 @@ const LayoutTemplate = () => {
             <Menu.Item key="7">Option 7</Menu.Item>
             <Menu.Item key="8">Option 8</Menu.Item> */}
           </SubMenu>
-          <Menu.Item key="/contact" icon={<MailOutlined />}></Menu.Item>
+          <Menu.Item key="/contact" icon={<MailOutlined />}>
+            <span>Contact</span>
+            <Link to="/contact"></Link>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
