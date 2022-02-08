@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LayoutProvider } from "./context/LayoutProvider";
 import APIProvider from "./context/APIProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
+// import { createBrowserHistory as history } from "history";
+import "./index.css";
 
 //instance of queryClient, then add it as a prop to QueryClientProvider
 const queryClient = new QueryClient();
@@ -13,11 +15,13 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <APIProvider>
-        <LayoutProvider>
-          <App />
-        </LayoutProvider>
-      </APIProvider>
+      <BrowserRouter>
+        <APIProvider>
+          <LayoutProvider>
+            <App />
+          </LayoutProvider>
+        </APIProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
