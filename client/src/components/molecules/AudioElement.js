@@ -10,23 +10,10 @@ const StyledMain = styled.div`
   align-items: center;
 `;
 
-// const StyledButton = styled.button`
-//   text-transform: uppercase;
-//   background: 0 0;
-// `;
-
 const AudioElement = () => {
   const apiContext = useContext(ApiContext);
 
   const inputEl = useRef(null);
-
-  // const handlePlay = () => {
-  //   inputEl.current.play();
-  // };
-
-  // const handlePause = () => {
-  //   inputEl.current.pause();
-  // };
 
   return (
     <StyledMain>
@@ -40,9 +27,7 @@ const AudioElement = () => {
           src={apiContext.getUrl}
           controls
         />
-        {/* <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button> */}
-        <button>Download / Copy URL</button>
+        {/* <button>Download / Copy URL</button> */}
       </div>
     </StyledMain>
   );
