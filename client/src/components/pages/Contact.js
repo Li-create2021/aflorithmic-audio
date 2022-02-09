@@ -1,9 +1,21 @@
 import React from "react";
-
-import ContactForm from "../templates/form/ContactForm";
+import { Layout } from "antd";
+import { AppFooter } from "../molecules/AppFooter";
+import SideBarMenu from "../organisms/SideBarMenu";
+import AppHeader from "../molecules/AppHeader";
+import ContactPageContents from "../molecules/ContactPageContents";
 
 const Contact = () => {
-  return <ContactForm />;
+  return (
+    <Layout style={{ background: "#fff" }}>
+      <SideBarMenu />
+      <Layout>
+        <AppHeader />
+        <ContactPageContents />
+        <AppFooter />
+      </Layout>
+    </Layout>
+  );
 };
 
 export default Contact;
