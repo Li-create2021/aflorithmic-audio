@@ -6,7 +6,6 @@ import { LayoutProvider } from "./context/LayoutProvider";
 import APIProvider from "./context/APIProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
-import "./index.css";
 
 //instance of queryClient, then add it as a prop to QueryClientProvider
 const queryClient = new QueryClient();
