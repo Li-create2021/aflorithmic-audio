@@ -1,15 +1,20 @@
 import React from "react";
-// import Title from "antd/lib/typography/Title";
-import LayoutTemplate from "../templates/layout/LayoutTemplate";
-
-// import LayoutTemplate from "../templates/layout/LayoutTemplate";
+import { Layout } from "antd";
+import { AppFooter } from "../molecules/AppFooter";
+import SideBarMenu from "../organisms/SideBarMenu";
+import AppHeader from "../molecules/AppHeader";
+import AflorithmicPageContents from "../molecules/AflorithmicPageContents";
 
 const Aflorithmic = () => {
   return (
-    <div>
-      {/* <Title level={4}>Aflorithmic Audio As a Service</Title> */}
-      <LayoutTemplate />
-    </div>
+    <Layout style={{ background: "#fff" }}>
+      <SideBarMenu />
+      <Layout>
+        <AppHeader />
+        <AflorithmicPageContents />
+        <AppFooter />
+      </Layout>
+    </Layout>
   );
 };
 
