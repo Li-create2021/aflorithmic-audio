@@ -1,26 +1,10 @@
 import React, { useContext } from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, Typography } from "antd";
 import { ApiContext } from "../../../context/APIProvider";
 import AppModal from "../../organisms/Modal";
 
+const { Title } = Typography;
 const { TextArea } = Input;
-
-const StyledButton = styled(Button)`
-  position: relative;
-  border-raduis: 4px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--btn-font-size, 1.5em);
-  color: var(--color-contrast-medium);
-  padding: var(--space-xs) var(--space-md);
-  cursor: pointer;
-  transition: color 0.2s;
-
-  &:hover {
-    color: var(--color-contrast-high);
-  }
-`;
 
 const FormTemplate = () => {
   //All data is stored in a context to be accessable globally
@@ -70,6 +54,21 @@ const FormTemplate = () => {
       layout="horizontal"
       onFinish={onSubmitHandler}
     >
+      <Title level={3} style={{ display: "flex", justifyContent: "center" }}>
+        Aflorithmic Audio Ad Builder
+      </Title>
+      <Title level={5} style={{ display: "flex", justifyContent: "center" }}>
+        Create a professional audio ad in 30 seconds.
+      </Title>
+      <Title level={5} style={{ display: "flex", justifyContent: "center" }}>
+        1. Write your ad
+      </Title>
+      <Title level={5} style={{ display: "flex", justifyContent: "center" }}>
+        2. Choose your speaker
+      </Title>
+      <Title level={5} style={{ display: "flex", justifyContent: "center" }}>
+        3. Choose your sound design
+      </Title>
       <Form.Item label="Introduction" name="introduction">
         <TextArea
           rows={2}
@@ -121,7 +120,6 @@ const FormTemplate = () => {
           </Select.Option>
         </Select>
       </Form.Item>
-
       <Form.Item>
         <Button
           type="primary"
