@@ -3,8 +3,6 @@ import About from "./components/pages/About";
 import Aflorithmic from "./components/pages/Aflorithmic";
 import Contact from "./components/pages/Contact";
 
-import "./App.css";
-
 function App() {
   return (
     <Switch>
